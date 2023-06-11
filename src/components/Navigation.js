@@ -8,7 +8,7 @@ const Navigation = (props) => {
     <>
        <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#">{props.title}</Navbar.Brand>
+        <Navbar.Brand href="/">{props.title}</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -16,16 +16,11 @@ const Navigation = (props) => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <NavDropdown title="Pages" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">About</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Action
-              </NavDropdown.Item>
+            {/* <Nav.Link href="/">Home</Nav.Link> */}
+            <NavDropdown title="Application" id="navbarScrollingDropdown">
+            <NavDropdown.Item href="/">TextForm</NavDropdown.Item>
+            <NavDropdown.Item href="/AboutPage">About</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Form className="d-flex">

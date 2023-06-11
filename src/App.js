@@ -1,18 +1,18 @@
-import './App.css';
-import Navigation from './components/Navigation';
+import React from 'react'
+import { Routes, Route } from "react-router-dom";
 import TextForm from './components/TextForm';
-// import Navbar from './components/Navbar';
+import AboutPage from './components/AboutPage';
 
 
-
-function App() {
+const App= () => {
   return (
-   <>
-    <Navigation title= 'TextUtils' />
-    <div className="container my-4">
-    <TextForm heading="Enter Text to Analyze" />
-    </div>
-   </>
+    <>
+    <Routes>
+    <Route exact path="/" element={<TextForm />} />
+    <Route exact path="/AboutPage" element={<AboutPage />} />
+    </Routes>
+    </>
+   
   );
 }
 

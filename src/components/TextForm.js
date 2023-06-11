@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {Badge, Form } from 'react-bootstrap'
 import BtnManager from './BtnManager';
 import TextCard from './TextCard';
+import Navigation from './Navigation';
 
 
 const TextForm = (props) => {
@@ -22,15 +23,27 @@ const clearButton =()=>{
   // console.log('clear pressed');
   setText('');
 }
+const spaceRem =()=>{
+  const sprem = text.replace(/ /g, '');
+  setText(sprem);
+}
+const trimText =()=>{
+  console.log('object')
+  const trmtxt = text.trim();
+  setText(trmtxt);
+}
 const caseChange =(event)=>{
     // console.log('case change switch is working');
     setText(event.target.value);
 }
   return (
     <>
-    <div>
+    <Navigation
+    title= 'TextUtils TextForm'
+    />
+    <div className='container m-4'>
         <h3>
-        <Badge bg="secondary">{props.heading}</Badge>
+        <Badge bg="secondary">Text to analyze</Badge>
       </h3>
        <Form>
       <Form.Group className="mb-4" controlId="exampleForm.ControlTextarea1">
@@ -52,6 +65,18 @@ const caseChange =(event)=>{
     variant="outline-secondary"
     BtnName="Clear text bar"
     btnClick={clearButton}
+    />
+    {' '}
+    <BtnManager
+    variant="outline-danger"
+    BtnName="Space Remover"
+    btnClick={spaceRem}
+    />
+    {' '}
+    <BtnManager
+    variant="outline-secondary"
+    BtnName="Trim text"
+    btnClick={trimText}
     />
     {' '}
     </div>
