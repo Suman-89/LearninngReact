@@ -1,15 +1,37 @@
-import React from 'react'
-import { Accordion } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Accordion} from 'react-bootstrap'
 import Navigation from './Navigation'
 
 const AboutPage = () => {
+  const [darkMode, setDarkMode] = useState({color: 'black',backgroundColor:'white'});
+  const [button, setButton] = useState('Switch to Dark Mode');
+  const [btnclassName, setBtnclassName] = useState("btn btn-primary");
+
+  const modeChange=(e)=>{
+    console.log('modeChange-->',e);
+    if (darkMode.color === 'black') {
+      setDarkMode({
+        color: 'white',backgroundColor:'black'
+      });
+      setButton('Switch to Light Mode')
+      setBtnclassName("btn btn-light");
+    }else{
+      setDarkMode({
+        color: 'black',backgroundColor:'white'
+      });
+      setButton('Switch to Dark Mode');
+      setBtnclassName("btn btn-dark");
+    }
+  }
+
   return (
     <>
-    <Navigation  title= 'TextUtils About'/>
-     <Accordion defaultActiveKey="0">
-      <Accordion.Item eventKey="0">
-        <Accordion.Header>Accordion Item #1</Accordion.Header>
-        <Accordion.Body>
+    <Navigation  title= 'TextUtils About' />
+    <div className="container my-4" >
+    <Accordion defaultActiveKey="0">
+      <Accordion.Item eventKey="0" >
+        <Accordion.Header >Accordion Item #1</Accordion.Header>
+        <Accordion.Body style={darkMode}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -20,8 +42,8 @@ const AboutPage = () => {
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="1">
-        <Accordion.Header>Accordion Item #2</Accordion.Header>
-        <Accordion.Body>
+        <Accordion.Header >Accordion Item #2</Accordion.Header>
+        <Accordion.Body style={darkMode}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -32,6 +54,11 @@ const AboutPage = () => {
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>
+    </div>
+    <div className="container my-4">
+    <button type="button" onClick={modeChange} className={btnclassName}>{button}</button>
+    </div>
+    
     </>
   )
 }

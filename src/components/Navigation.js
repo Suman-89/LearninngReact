@@ -19,7 +19,7 @@ const Navigation = (props) => {
             {/* <Nav.Link href="/">Home</Nav.Link> */}
             <NavDropdown title="Application" id="navbarScrollingDropdown">
             <NavDropdown.Item href="/">TextForm</NavDropdown.Item>
-            <NavDropdown.Item href="/AboutPage">About</NavDropdown.Item>
+            <NavDropdown.Item href="/about">About</NavDropdown.Item>
               <NavDropdown.Divider />
             </NavDropdown>
           </Nav>

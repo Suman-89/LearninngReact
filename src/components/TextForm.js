@@ -41,7 +41,7 @@ const caseChange =(event)=>{
     <Navigation
     title= 'TextUtils TextForm'
     />
-    <div className='container m-4'>
+    <div className='container my-4'>
         <h3>
         <Badge bg="secondary">Text to analyze</Badge>
       </h3>
