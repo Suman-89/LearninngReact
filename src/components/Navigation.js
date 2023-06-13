@@ -30,7 +30,7 @@ const Navigation = (props) => {
               className="me-2"
               aria-label="Search"
             />
-            <Button variant="outline-info">Search</Button>
+            <Button variant="outline-success">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>

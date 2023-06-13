@@ -1,26 +1,24 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Accordion} from 'react-bootstrap'
 import Navigation from './Navigation'
+import BtnManager from './BtnManager';
 
-const AboutPage = () => {
-  const [darkMode, setDarkMode] = useState({color: 'black',backgroundColor:'white'});
-  const [button, setButton] = useState('Switch to Dark Mode');
-  const [btnclassName, setBtnclassName] = useState("btn btn-primary");
-
+const AboutPage = ({darkMode,setDarkMode,button,setButton,btnVariant,setBtnVariant}) => {
+  
   const modeChange=(e)=>{
-    console.log('modeChange-->',e);
+    // console.log('modeChange-->',e);
     if (darkMode.color === 'black') {
       setDarkMode({
         color: 'white',backgroundColor:'black'
       });
       setButton('Switch to Light Mode')
-      setBtnclassName("btn btn-light");
+      setBtnVariant("outline-info");
     }else{
       setDarkMode({
         color: 'black',backgroundColor:'white'
       });
       setButton('Switch to Dark Mode');
-      setBtnclassName("btn btn-dark");
+      setBtnVariant("outline-dark");
     }
   }
 
@@ -56,7 +54,12 @@ const AboutPage = () => {
     </Accordion>
     </div>
     <div className="container my-4">
-    <button type="button" onClick={modeChange} className={btnclassName}>{button}</button>
+      <BtnManager
+      BtnName={button}
+      variant={btnVariant}
+      btnClick={modeChange}
+      />
+    {/* <button type="button" onClick={modeChange} className={btnclassName}>{button}</button> */}
     </div>
     
     </>

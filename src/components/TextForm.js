@@ -27,10 +27,15 @@ const spaceRem =()=>{
   const sprem = text.replace(/ /g, '');
   setText(sprem);
 }
-const trimText =()=>{
+const copyText =()=>{
   console.log('object')
-  const trmtxt = text.trim();
-  setText(trmtxt);
+  let textCopy = document.getElementById('textForm');
+  textCopy.select()
+  navigator.clipboard.writeText(textCopy.value);
+}
+const ExSpaceRem =()=>{
+  let wrapText = text.split(/[ ]+/);
+  setText(wrapText.join(" "));
 }
 const caseChange =(event)=>{
     // console.log('case change switch is working');
@@ -47,7 +52,7 @@ const caseChange =(event)=>{
       </h3>
        <Form>
       <Form.Group className="mb-4" controlId="exampleForm.ControlTextarea1">
-        <Form.Control as="textarea" value={text} onChange={caseChange} rows={8} />
+        <Form.Control as="textarea" value={text} onChange={caseChange} id='textForm' rows={8} />
       </Form.Group>
     </Form>
     <BtnManager
@@ -74,9 +79,15 @@ const caseChange =(event)=>{
     />
     {' '}
     <BtnManager
-    variant="outline-secondary"
-    BtnName="Trim text"
-    btnClick={trimText}
+    variant="outline-dark"
+    BtnName="copyText"
+    btnClick={copyText}
+    />
+    {' '}
+    <BtnManager
+    variant="outline-warning"
+    BtnName="Extra space remove"
+    btnClick={ExSpaceRem}
     />
     {' '}
     </div>
