@@ -7,6 +7,7 @@ import Navigation from './Navigation';
 
 const TextForm = (props) => {
     const [text, setText] = useState('');
+    const [mode, setMode] = useState('light');
 
 const upClick =()=>{
     // console.log('upClick started' + text);
@@ -23,9 +24,9 @@ const clearButton =()=>{
   // console.log('clear pressed');
   setText('');
 }
-const spaceRem =()=>{
-  const sprem = text.replace(/ /g, '');
-  setText(sprem);
+const textWrap =()=>{
+  const newtext = text.replace(/ /g, '');
+  setText(newtext);
 }
 const copyText =()=>{
   console.log('object')
@@ -33,26 +34,39 @@ const copyText =()=>{
   textCopy.select()
   navigator.clipboard.writeText(textCopy.value);
 }
-const ExSpaceRem =()=>{
-  let wrapText = text.split(/[ ]+/);
-  setText(wrapText.join(" "));
+const spaceRem =()=>{
+  let compactText = text.split(/[ ]+/);
+  setText(compactText.join(" "));
 }
 const caseChange =(event)=>{
     // console.log('case change switch is working');
     setText(event.target.value);
 }
+
+const toggleMode = ()=>{
+  if (mode === 'light'){
+    setMode('dark');
+  } else {
+    setMode('light');
+  }
+}
+
+
+
   return (
     <>
     <Navigation
     title= 'TextUtils TextForm'
+    mode={mode}
+    toggleMode={toggleMode}
     />
     <div className='container my-4'>
         <h3>
-        <Badge bg="secondary">Text to analyze</Badge>
+        <Badge bg="info">Text to analyze</Badge>
       </h3>
        <Form>
       <Form.Group className="mb-4" controlId="exampleForm.ControlTextarea1">
-        <Form.Control as="textarea" value={text} onChange={caseChange} id='textForm' rows={8} />
+        <Form.Control as="textarea" value={text} onChange={caseChange}  rows={8} />
       </Form.Group>
     </Form>
     <BtnManager
@@ -66,16 +80,11 @@ const caseChange =(event)=>{
     btnClick={lowClick}
     />
     {' '}
-    <BtnManager
-    variant="outline-secondary"
-    BtnName="Clear text bar"
-    btnClick={clearButton}
-    />
-    {' '}
+   
     <BtnManager
     variant="outline-danger"
-    BtnName="Space Remover"
-    btnClick={spaceRem}
+    BtnName="Text wrapper"
+    btnClick={textWrap}
     />
     {' '}
     <BtnManager
@@ -86,8 +95,14 @@ const caseChange =(event)=>{
     {' '}
     <BtnManager
     variant="outline-warning"
-    BtnName="Extra space remove"
-    btnClick={ExSpaceRem}
+    BtnName="Space remove"
+    btnClick={spaceRem}
+    />
+    {' '}
+     <BtnManager
+    variant="outline-secondary"
+    BtnName="Clear text bar"
+    btnClick={clearButton}
     />
     {' '}
     </div>

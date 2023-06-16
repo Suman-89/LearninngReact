@@ -24,7 +24,7 @@ const AboutPage = ({darkMode,setDarkMode,button,setButton,btnVariant,setBtnVaria
 
   return (
     <>
-    <Navigation  title= 'TextUtils About' />
+    <Navigation  title= 'TextUtils About'/>
     <div className="container my-4" >
     <Accordion defaultActiveKey="0">
       <Accordion.Item eventKey="0" >

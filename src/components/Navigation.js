@@ -1,12 +1,15 @@
-import React from 'react'
+import React, {  } from 'react'
 import PropTypes from 'prop-types'
-import { Button, Container, Form, Nav, NavDropdown, Navbar } from 'react-bootstrap';
+import {Container, Form, Nav, NavDropdown, Navbar } from 'react-bootstrap';
 
 
 const Navigation = (props) => {
+
+
+
   return (
     <>
-       <Navbar bg="light" expand="lg">
+       <Navbar bg={`${props.mode}`} expand="lg" className='text=light'>
       <Container fluid>
         <Navbar.Brand href="/">{props.title}</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -23,15 +26,14 @@ const Navigation = (props) => {
               <NavDropdown.Divider />
             </NavDropdown>
           </Nav>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
+          <Form>
+           <Form.Check // prettier-ignore
+            type="switch"
+            id="custom-switch"
+            label='set dark mode'
+            onClick={props.toggleMode}
+           />
+            </Form>      
         </Navbar.Collapse>
       </Container>
     </Navbar>
