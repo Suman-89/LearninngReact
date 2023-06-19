@@ -28,11 +28,11 @@ const textWrap =()=>{
   const newtext = text.replace(/ /g, '');
   setText(newtext);
 }
-const copyText =()=>{
-  console.log('object')
-  let textCopy = document.getElementById('textForm');
-  textCopy.select()
-  navigator.clipboard.writeText(textCopy.value);
+const copyText =(e)=>{
+  console.log('e-->',e);
+  // let textCopy = document.getElementById('textForm');
+  // textCopy.select()
+  // navigator.clipboard.writeText(textCopy.value);
 }
 const spaceRem =()=>{
   let compactText = text.split(/[ ]+/);
@@ -58,59 +58,61 @@ const toggleMode = ()=>{
     <Navigation
     title= 'TextUtils TextForm'
     mode={mode}
+    setMode={setMode}
     toggleMode={toggleMode}
     />
-    <div className='container my-4'>
+    <div className='container my-4' style={{backgroundColor:mode === 'light' ? ('white'):('grey')}}>
         <h3>
-        <Badge bg="info">Text to analyze</Badge>
+        <Badge bg={mode === 'light' ? ("info"):("dark")}>Text to analyze</Badge>
       </h3>
        <Form>
       <Form.Group className="mb-4" controlId="exampleForm.ControlTextarea1">
         <Form.Control as="textarea" value={text} onChange={caseChange}  rows={8} />
       </Form.Group>
-    </Form>
-    <BtnManager
-    variant="outline-primary"
-    BtnName="Conver to UpperCase"
-    btnClick={upClick}
-    />{' '}
+     </Form>
      <BtnManager
-    variant="outline-success"
-    BtnName="Conver to LowerCase"
-    btnClick={lowClick}
-    />
-    {' '}
+     variant={mode === 'light' ? ("outline-primary"):("outline-dark")}
+     BtnName="Conver to UpperCase"
+     btnClick={upClick}
+     />{' '}
+     <BtnManager
+     variant={mode === 'light' ? ("outline-success"):("outline-dark")}
+     BtnName="Conver to LowerCase"
+     btnClick={lowClick}
+     />
+     {' '}
    
-    <BtnManager
-    variant="outline-danger"
-    BtnName="Text wrapper"
-    btnClick={textWrap}
-    />
-    {' '}
-    <BtnManager
-    variant="outline-dark"
-    BtnName="copyText"
-    btnClick={copyText}
-    />
-    {' '}
-    <BtnManager
-    variant="outline-warning"
-    BtnName="Space remove"
-    btnClick={spaceRem}
-    />
-    {' '}
      <BtnManager
-    variant="outline-secondary"
-    BtnName="Clear text bar"
-    btnClick={clearButton}
-    />
-    {' '}
-    </div>
-    <div className="container">
+     variant={mode === 'light' ? ("outline-danger"):("outline-dark")}
+     BtnName="Text wrapper"
+     btnClick={textWrap}
+     />
+     {' '}
+     <BtnManager
+     variant={mode === 'light' ? ("outline-warning"):("outline-dark")}
+     BtnName="copyText"
+     btnClick={copyText}
+     />
+     {' '}
+     <BtnManager
+     variant={mode === 'light' ? ("outline-secondary"):("outline-dark")}
+     BtnName="Space remove"
+     btnClick={spaceRem}
+     />
+     {' '}
+     <BtnManager
+     variant={mode === 'light' ? ("outline-success"):("outline-dark")}
+     BtnName="Clear text bar"
+     btnClick={clearButton}
+     />
+     {' '}
+     </div>
+     <div className="container">
       <TextCard
       text={text}
       textHead="Text Summary"
       previewHeader="Text preview"
+      className="text-light"
       />
     </div>
     </>

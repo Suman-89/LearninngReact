@@ -9,9 +9,9 @@ const Navigation = (props) => {
 
   return (
     <>
-       <Navbar bg={`${props.mode}`} expand="lg" className='text=light'>
+       <Navbar bg={`${props.mode}`} expand="lg" className='text-dark'>
       <Container fluid>
-        <Navbar.Brand href="/">{props.title}</Navbar.Brand>
+        <Navbar.Brand className={props.mode === 'light' ? ('text-dark'):('text-light')} href="/">{props.title}</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -30,7 +30,8 @@ const Navigation = (props) => {
            <Form.Check // prettier-ignore
             type="switch"
             id="custom-switch"
-            label='set dark mode'
+            className={props.mode === 'light' ? ('text-dark'):('text-light')}
+            label={props.mode === 'light'? ('set to dark mode'):('set to light mode')}
             onClick={props.toggleMode}
            />
             </Form>      
