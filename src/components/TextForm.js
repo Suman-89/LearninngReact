@@ -1,32 +1,58 @@
 import React, { useState } from 'react'
-import {Badge, Form } from 'react-bootstrap'
+import {Alert, Badge, Form } from 'react-bootstrap'
 import BtnManager from './BtnManager';
 import TextCard from './TextCard';
 import Navigation from './Navigation';
 
 
 const TextForm = (props) => {
-    const [text, setText] = useState('');
+    const [text, setText] = useState('Enter text...');
     const [mode, setMode] = useState('light');
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
 
 const upClick =()=>{
     // console.log('upClick started' + text);
     // console.log('upClick');
     let textUpCase = text.toUpperCase();
     setText(textUpCase);
+    setShowAlert(true);
+    setAlertMessage('Text case change successfull *');
+    setTimeout(()=>{
+      setShowAlert(false);
+      setAlertMessage('');
+    },2000);
 }
 const lowClick =()=>{
     // console.log('lowclick');
     let textLowCase = text.toLowerCase();
     setText(textLowCase);
+    setShowAlert(true);
+    setAlertMessage('Text case change successfull *');
+    setTimeout(()=>{
+      setShowAlert(false);
+      setAlertMessage('');
+    },2000);
 }
 const clearButton =()=>{
   // console.log('clear pressed');
-  setText('');
+  setText('Enter text...');
+  setShowAlert(true);
+    setAlertMessage('Text cleared *');
+    setTimeout(()=>{
+      setShowAlert(false);
+      setAlertMessage('');
+    },2000);
 }
 const textWrap =()=>{
   const newtext = text.replace(/ /g, '');
   setText(newtext);
+  setShowAlert(true);
+    setAlertMessage('Text wrapping successfull *');
+    setTimeout(()=>{
+      setShowAlert(false);
+      setAlertMessage('');
+    },2000);
 }
 const copyText =(e)=>{
   console.log('e-->',e);
@@ -36,7 +62,13 @@ const copyText =(e)=>{
 }
 const spaceRem =()=>{
   let compactText = text.split(/[ ]+/);
-  setText(compactText.join(" "));
+    setText(compactText.join(" "));
+    setShowAlert(true);
+    setAlertMessage('Extra spaces removed ! *');
+    setTimeout(()=>{
+      setShowAlert(false);
+      setAlertMessage('');
+    },2000);
 }
 const caseChange =(event)=>{
     // console.log('case change switch is working');
@@ -61,7 +93,18 @@ const toggleMode = ()=>{
     setMode={setMode}
     toggleMode={toggleMode}
     />
-    <div className='container my-4' style={{backgroundColor:mode === 'light' ? ('white'):('grey')}}>
+    <div className="container my-2">
+      <div className="col-sm-3">
+      {
+        text && showAlert === true ? (<Alert variant="warning">
+        {alertMessage}
+      </Alert> ):(<></>)
+      }
+      </div>
+     
+    
+    </div>
+    <div className='container my-4'>
         <h3>
         <Badge bg={mode === 'light' ? ("info"):("dark")}>Text to analyze</Badge>
       </h3>
@@ -71,37 +114,37 @@ const toggleMode = ()=>{
       </Form.Group>
      </Form>
      <BtnManager
-     variant={mode === 'light' ? ("outline-primary"):("outline-dark")}
+     variant={mode === 'light' ? ("primary"):("outline-dark")}
      BtnName="Conver to UpperCase"
      btnClick={upClick}
      />{' '}
      <BtnManager
-     variant={mode === 'light' ? ("outline-success"):("outline-dark")}
+     variant={mode === 'light' ? ("success"):("outline-dark")}
      BtnName="Conver to LowerCase"
      btnClick={lowClick}
      />
      {' '}
    
      <BtnManager
-     variant={mode === 'light' ? ("outline-danger"):("outline-dark")}
+     variant={mode === 'light' ? ("danger"):("outline-dark")}
      BtnName="Text wrapper"
      btnClick={textWrap}
      />
      {' '}
      <BtnManager
-     variant={mode === 'light' ? ("outline-warning"):("outline-dark")}
+     variant={mode === 'light' ? ("warning"):("outline-dark")}
      BtnName="copyText"
      btnClick={copyText}
      />
      {' '}
      <BtnManager
-     variant={mode === 'light' ? ("outline-secondary"):("outline-dark")}
+     variant={mode === 'light' ? ("secondary"):("outline-dark")}
      BtnName="Space remove"
      btnClick={spaceRem}
      />
      {' '}
      <BtnManager
-     variant={mode === 'light' ? ("outline-success"):("outline-dark")}
+     variant={mode === 'light' ? ("info"):("outline-dark")}
      BtnName="Clear text bar"
      btnClick={clearButton}
      />
